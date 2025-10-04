@@ -15,7 +15,11 @@ void cg::renderer::rasterization_renderer::init()
 
 	render_target = std::make_shared<cg::resource<cg::unsigned_color>>(
 		settings->width, settings->height);
-	rasterizer->set_render_target(render_target);
+
+	depth_buffer = std::make_shared<cg::resource<float>>(
+		settings->width, settings->height);
+
+	rasterizer->set_render_target(render_target, depth_buffer);
 
 	// TODO Lab: 1.06 Add depth buffer in `cg::renderer::rasterization_renderer`
 }
@@ -54,8 +58,8 @@ void cg::renderer::rasterization_renderer::render()
 	}
 
 	 cg::utils::save_resource(*render_target, settings->result_path);
-	// TODO Lab: 1.05 Implement `pixel_shader` lambda for the instance of `cg::renderer::rasterizer`
-	// TODO Lab: 1.03 Adjust `cg::renderer::rasterization_renderer` and `cg::renderer::renderer` classes to consume `cg::world::model`
+
+
 }
 
 void cg::renderer::rasterization_renderer::destroy() {}
