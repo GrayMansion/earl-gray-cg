@@ -60,7 +60,7 @@ void model::allocate_buffers(const std::vector<tinyobj::shape_t>& shapes)
 					index_map[idx_tuple] = vertex_buffer_size;
 					vertex_buffer_size++;
 				}
-				vertex_buffer_size++;
+				index_buffer_size++;
 			}
 			index_offset += fv;
 		}
@@ -183,7 +183,7 @@ void model::fill_buffers(const std::vector<tinyobj::shape_t>& shapes, const tiny
 					vertex_buffer_id++;
 				}
 				index_buffer->item(index_buffer_id) = index_map[idx_tuple];
-				vertex_buffer_id++;
+				index_buffer_id++;
 			}
 			index_offset += fv;
 		}
