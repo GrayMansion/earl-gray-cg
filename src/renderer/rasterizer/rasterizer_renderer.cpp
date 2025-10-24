@@ -20,8 +20,6 @@ void cg::renderer::rasterization_renderer::init()
 		settings->width, settings->height);
 
 	rasterizer->set_render_target(render_target, depth_buffer);
-
-	// TODO Lab: 1.06 Add depth buffer in `cg::renderer::rasterization_renderer`
 }
 void cg::renderer::rasterization_renderer::render()
 {
