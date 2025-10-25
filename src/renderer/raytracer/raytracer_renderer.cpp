@@ -51,10 +51,6 @@ void cg::renderer::ray_tracing_renderer::render()
 			payload.bary.z * triangle.nc
 		);
 
-		// using namespace linalg::ostream_overloads;
-		// std::cout << "bary:" << payload.bary << " na: " << triangle.na;
-		// std::cout << " normal:" << normal << " \n";
-
 		float3 result_color = triangle.emissive;
 
 		for (auto & light : lights) {
@@ -62,8 +58,6 @@ void cg::renderer::ray_tracing_renderer::render()
 			result_color += triangle.diffuse * light.color *
 				std::max(dot(normal, to_light.direction), 0.f);
 		}
-
-
 
 		payload.color = cg::color::from_float3(result_color);
 		return payload;

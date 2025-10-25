@@ -232,7 +232,7 @@ namespace cg::renderer
 
 		for (auto & triangle : triangles) {
 			payload payload = intersection_shader(triangle, ray);
-			if (payload.t > min_t && payload.t < max_t) {
+			if (payload.t > min_t && payload.t < closest_hit_payload.t) {
 				closest_hit_payload = payload;
 				closest_triangle = &triangle;
 			}
