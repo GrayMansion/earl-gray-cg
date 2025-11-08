@@ -33,7 +33,13 @@ void cg::renderer::dx12_renderer::destroy()
 
 void cg::renderer::dx12_renderer::update()
 {
-	// TODO Lab: 3.08 Implement `update` method of `dx12_renderer`
+	auto now = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<float> duration = now - current_time;
+	frame_duration = duration.count();
+	current_time = now;
+
+	cb.mwpMatrix = camera->get_dxm_mvp_matrix();
+	memcpy(constant_buffer_data_begin, &cb, sizeof(cb));
 }
 
 void cg::renderer::dx12_renderer::render()
@@ -248,8 +254,6 @@ void cg::renderer::dx12_renderer::create_pso()
 {
 	ComPtr<ID3DBlob> vertex_shader = compile_shader("VSMain", "vs_5_0");
 	ComPtr<ID3DBlob> pixel_shader = compile_shader("PSMain", "ps_5_0");
-
-
 
 	D3D12_INPUT_ELEMENT_DESC input_descs[] = {
 		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0,
