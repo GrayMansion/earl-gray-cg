@@ -338,7 +338,7 @@ D3D12_VERTEX_BUFFER_VIEW cg::renderer::dx12_renderer::create_vertex_buffer_view(
 {
 	D3D12_VERTEX_BUFFER_VIEW view{};
 	view.BufferLocation = vertex_buffer->GetGPUVirtualAddress();
-	view.StrideInBytes = sizeof(vertex_buffer);
+	view.StrideInBytes = sizeof(vertex);
 	view.SizeInBytes = vertex_buffer_size;
 	return view;
 }
